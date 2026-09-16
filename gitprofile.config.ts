@@ -37,7 +37,7 @@ const CONFIG = {
           description:
             'You are a mask artist making ends meet by creating human disguises for monsters. Though business is lucrative, your customers can be quite... rowdy.',
           imageUrl:
-            '/portfolio/images/MaskMotelBanner.png',
+            '/MaskMotelBanner.png',
           link: 'https://justhallowed.itch.io/mask-motel',
         },
         {
