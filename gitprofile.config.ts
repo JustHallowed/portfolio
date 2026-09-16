@@ -19,8 +19,8 @@ const CONFIG = {
         sortBy: 'stars', // Sort projects by 'stars' or 'updated'
         limit: 8, // How many projects to display.
         exclude: {
-          forks: false, // Forked projects will not be displayed if set to true.
-          projects: [], // These projects will not be displayed. example: ['arifszn/my-project1', 'arifszn/my-project2']
+          forks: true, // Forked projects will not be displayed if set to true.
+          projects: ['JustHallowed/WidgetTestPage'], // These projects will not be displayed. example: ['arifszn/my-project1', 'arifszn/my-project2']
         },
       },
       manual: {
@@ -51,11 +51,11 @@ const CONFIG = {
       ],
     },
   },
-  seo: { title: 'Portfolio of Ariful Alam', description: '', imageURL: '' },
+  seo: { title: 'Portfolio of Ou Yukang', description: '', imageURL: '' },
   social: {
-    linkedin: 'ariful-alam',
-    x: 'arif_szn',
-    mastodon: 'arifszn@mastodon.social',
+    linkedin: 'yukang-ou',
+    x: '',
+    mastodon: '',
     researchGate: '',
     facebook: '',
     instagram: '',
@@ -65,34 +65,21 @@ const CONFIG = {
     udemy: '',
     dribbble: '',
     behance: '',
-    medium: 'arifszn',
-    dev: 'arifszn',
+    medium: '',
+    dev: '',
     stackoverflow: '', // example: '1/jeff-atwood'
     discord: '',
     telegram: '',
-    website: 'https://www.arifszn.com',
+    website: '',
     phone: '',
     email: '',
   },
   resume: {
     fileUrl:
-      'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf', // Empty fileUrl will hide the `Download Resume` button.
+      // 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf', // Empty fileUrl will hide the `Download Resume` button.
   },
   skills: [
-    'PHP',
-    'Laravel',
-    'JavaScript',
-    'React.js',
-    'Node.js',
-    'Nest.js',
-    'MySQL',
-    'PostgreSQL',
-    'Git',
-    'Docker',
-    'PHPUnit',
-    'CSS',
-    'Antd',
-    'Tailwind',
+    "C/C++", "C#", "Java", "React.js"
   ],
   experiences: [
     // {
@@ -117,20 +104,20 @@ const CONFIG = {
   //     year: 'March 2022',
   //     link: 'https://example.com',
   //   },
-  // ],
-  // educations: [
-  //   {
-  //     institution: 'Institution Name',
-  //     degree: 'Degree',
-  //     from: '2015',
-  //     to: '2019',
-  //   },
-  //   {
-  //     institution: 'Institution Name',
-  //     degree: 'Degree',
-  //     from: '2012',
-  //     to: '2014',
-  //   },
+  ],
+  educations: [
+    {
+      institution: 'Singapore Institute of Technology-Digipen',
+      degree: 'Computer Science in Real-Time Interactive Simulation',
+      from: '2024',
+      to: '2028',
+    },
+    {
+      institution: 'Nanyang Polytechnic',
+      degree: 'Diploma in Game Development and Technology',
+      from: '2019',
+      to: '2022',
+    },
   ],
   publications: [
     {
@@ -155,7 +142,7 @@ const CONFIG = {
   // Track visitor interaction and behavior. https://www.hotjar.com
   hotjar: { id: '', snippetVersion: 6 },
   themeConfig: {
-    defaultTheme: 'lofi',
+    defaultTheme: 'business',
 
     // Hides the switch in the navbar
     // Useful if you want to support a single color mode
