@@ -32,21 +32,29 @@ const CONFIG = {
       header: 'My Projects',
       // To hide the `External Projects` section, keep it empty.
       projects: [
+          {
+          title: 'Get Me Out of Hell',
+          description:
+            'For your sins, you are sent to hell as punishment. Can you escape hell?',
+          imageUrl:
+            '/portfolio/GMOHBanner.png',
+          link: 'https://github.com/weijieng-dp/TUTU',
+        },
         {
           title: 'Mask Motel',
           description:
-            'You are a mask artist making ends meet by creating human disguises for monsters. Though business is lucrative, your customers can be quite... rowdy.',
+            'Submission for Global Game Jam 2026 - You are a mask artist making ends meet by creating human disguises for monsters. Though business is lucrative, your customers can be quite... rowdy.',
           imageUrl:
             '/portfolio/MaskMotelBanner.png',
           link: 'https://justhallowed.itch.io/mask-motel',
         },
         {
-          title: 'Project Name',
+          title: 'Broken Quest',
           description:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc ut.',
+            'Submission for Godot Wild Jam 55 - .',
           imageUrl:
-            'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg',
-          link: 'https://example.com',
+            '/portfolio/BrokenQuestBanner.png',
+          link: 'https://justhallowed.itch.io/broken-quest',
         },
       ],
     },
