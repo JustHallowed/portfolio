@@ -35,7 +35,7 @@ const CONFIG = {
           {
           title: 'Get Me Out of Hell',
           description:
-            'For your sins, you are sent to hell as punishment. Can you escape hell?',
+            'Roguelite dungeon crawler built on a custom C++ game engine with windows-android cross platform compatibility through Android studio Java Native Interface (JNI)',
           imageUrl:
             '/portfolio/GMOHBanner.png',
           link: 'https://github.com/weijieng-dp/TUTU',
