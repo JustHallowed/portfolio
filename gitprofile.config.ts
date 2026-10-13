@@ -49,6 +49,14 @@ const CONFIG = {
           link: 'https://justhallowed.itch.io/mask-motel',
         },
         {
+          title: 'Catasite',
+          description:
+            '2D RPG platformer built in Unity engine with a possession mechanic that gives unqiue abilities for different kinds of enemies. Blinded by a curse, you can only see through echolocation made possible with a custom authored shader',
+          imageUrl:
+            '/portfolio/CatasiteBanner.png',
+          link: 'https://www.youtube.com/watch?v=JaUAr721l7g',
+        },
+        {
           title: 'Broken Quest',
           description:
             'Submission for Godot Wild Jam 55 - .',
