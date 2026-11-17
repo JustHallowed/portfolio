@@ -35,7 +35,7 @@ const CONFIG = {
       //   buttons: link buttons at the top of the popup, e.g. [{ label: 'Play on itch.io', url: 'https://...' }]
       //            (if empty, `link` is shown as a "View Project" button)
       //   details: longer text for the popup; use backticks (`...`) to write it over multiple lines,
-      //            with a blank line between paragraphs;
+      //            with a blank line between paragraphs and `<br>` for a line break within one;
       //            `description` stays the short text on the card, and is used in the popup if `details` is empty
       //   videos: YouTube links or direct video URLs (e.g. '/portfolio/demo.mp4')
       //   screenshots: image URLs (files in `public/` are served at '/portfolio/<file>')

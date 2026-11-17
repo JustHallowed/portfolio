@@ -665,7 +665,7 @@ const CONFIG = {
 
 - **Highlight Projects Beyond GitHub:** Feature projects hosted on other platforms or personal websites.
 - **Control over Content:** Provide custom titles, descriptions, images, and links for each external project.
-- **Project Popup:** Clicking a project opens a popup with optional `buttons` (link buttons at the top; if empty, `link` is shown as a "View Project" button), `details` (longer text; separate paragraphs with a blank line), `videos` (YouTube links are embedded, other URLs such as `.mp4` files use a video player) and `screenshots`.
+- **Project Popup:** Clicking a project opens a popup with optional `buttons` (link buttons at the top; if empty, `link` is shown as a "View Project" button), `details` (longer text; separate paragraphs with a blank line, and use `<br>` for a line break within a paragraph), `videos` (YouTube links are embedded, other URLs such as `.mp4` files use a video player) and `screenshots`.
 
 ```ts
 // gitprofile.config.ts

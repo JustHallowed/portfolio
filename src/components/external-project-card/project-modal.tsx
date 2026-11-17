@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { Fragment, useEffect, useRef } from 'react';
 import { MdClose, MdOpenInNew } from 'react-icons/md';
 import { SanitizedExternalProject } from '../../interfaces/sanitized-config';
 
@@ -111,7 +111,13 @@ const ProjectModal = ({
               <div className="space-y-3 text-base-content text-sm sm:text-base leading-relaxed">
                 {paragraphs.map((paragraph, index) => (
                   <p key={index}>
-                    {paragraph}
+                    {/* `<br>` in the text forces a line break */}
+                    {paragraph.split(/\s*<br\s*\/?>\s*/i).map((line, i) => (
+                      <Fragment key={i}>
+                        {i > 0 && <br />}
+                        {line}
+                      </Fragment>
+                    ))}
                   </p>
                 ))}
               </div>
