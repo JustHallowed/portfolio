@@ -37,7 +37,8 @@ export const ProjectVideo = ({ url, title }: { url: string; title: string }) => 
 };
 
 /**
- * A screenshot that opens full size in a new tab when clicked.
+ * A screenshot that opens full size in a new tab when clicked. GIFs are
+ * upscaled without smoothing, so downscaled pixel-art clips stay crisp.
  */
 export const ProjectScreenshot = ({ url, alt }: { url: string; alt: string }) => (
   <a
@@ -50,7 +51,7 @@ export const ProjectScreenshot = ({ url, alt }: { url: string; alt: string }) =>
       src={url}
       alt={alt}
       loading="lazy"
-      className="w-full h-auto transition-transform duration-300 hover:scale-105"
+      className={`w-full h-auto transition-transform duration-300 hover:scale-105 ${/\.gif(\?.*)?$/i.test(url) ? '[image-rendering:pixelated]' : ''}`}
     />
   </a>
 );
