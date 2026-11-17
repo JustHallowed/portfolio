@@ -93,10 +93,18 @@ interface ExternalProjects {
     buttons?: Array<{ label: string; url: string }>;
 
     /**
-     * Longer write-up shown in the project popup.
-     * Separate paragraphs with a blank line ("\n\n").
+     * Longer write-up shown in the project popup, written in Markdown.
+     * For anything long, prefer `detailsFile`.
      */
     details?: string;
+
+    /**
+     * Name of a Markdown file in the `project-details/` folder to show in the
+     * project popup. Takes priority over `details`.
+     *
+     * example: 'broken-quest.md'
+     */
+    detailsFile?: string;
 
     /**
      * Videos shown in the project popup.

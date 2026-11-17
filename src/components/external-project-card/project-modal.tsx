@@ -1,17 +1,15 @@
-import { Fragment, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { MdClose, MdOpenInNew } from 'react-icons/md';
 import { SanitizedExternalProject } from '../../interfaces/sanitized-config';
+import Markdown from './markdown';
+import { ProjectScreenshot, ProjectVideo } from './media';
 
-/**
- * Returns an embeddable URL for YouTube links, or null for anything else.
- */
-const getYouTubeEmbedUrl = (url: string): string | null => {
-  const match = url.match(
-    /(?:youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{11})/,
-  );
-
-  return match ? `https://www.youtube.com/embed/${match[1]}` : null;
-};
+// Write-ups referenced by `detailsFile`, bundled at build time
+const DETAIL_FILES = import.meta.glob<string>('/project-details/*.md', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+});
 
 const ProjectModal = ({
   project,
@@ -41,11 +39,16 @@ const ProjectModal = ({
       : [];
   const videos = project?.videos ?? [];
   const screenshots = project?.screenshots ?? [];
-  const paragraphs = (project?.details || project?.description || '')
-    .split(/\n\s*\n/)
-    // Join wrapped lines so multi-line template literals read as one paragraph
-    .map((paragraph) => paragraph.replace(/\s*\n\s*/g, ' ').trim())
-    .filter((paragraph) => paragraph.length > 0);
+  const detailsFromFile = project?.detailsFile
+    ? DETAIL_FILES[`/project-details/${project.detailsFile}`]
+    : undefined;
+  if (project?.detailsFile && detailsFromFile === undefined) {
+    console.error(
+      `Project details file not found: project-details/${project.detailsFile}`,
+    );
+  }
+  const details =
+    detailsFromFile || project?.details || project?.description || '';
 
   return (
     <dialog ref={dialogRef} className="modal" onClose={onClose}>
@@ -84,62 +87,24 @@ const ProjectModal = ({
           </div>
 
           <div className="px-6 py-6 space-y-6">
-            {videos.map((video, index) => {
-              const embedUrl = getYouTubeEmbedUrl(video);
+            {videos.map((video, index) => (
+              <ProjectVideo
+                key={index}
+                url={video}
+                title={`${project.title} video ${index + 1}`}
+              />
+            ))}
 
-              return (
-                <div
-                  key={index}
-                  className="aspect-video w-full overflow-hidden rounded-xl bg-base-300"
-                >
-                  {embedUrl ? (
-                    <iframe
-                      className="w-full h-full"
-                      src={embedUrl}
-                      title={`${project.title} video ${index + 1}`}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    />
-                  ) : (
-                    <video className="w-full h-full" src={video} controls />
-                  )}
-                </div>
-              );
-            })}
-
-            {paragraphs.length > 0 && (
-              <div className="space-y-3 text-base-content text-sm sm:text-base leading-relaxed">
-                {paragraphs.map((paragraph, index) => (
-                  <p key={index}>
-                    {/* `<br>` in the text forces a line break */}
-                    {paragraph.split(/\s*<br\s*\/?>\s*/i).map((line, i) => (
-                      <Fragment key={i}>
-                        {i > 0 && <br />}
-                        {line}
-                      </Fragment>
-                    ))}
-                  </p>
-                ))}
-              </div>
-            )}
+            {details.trim() && <Markdown>{details}</Markdown>}
 
             {screenshots.length > 0 && (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {screenshots.map((screenshot, index) => (
-                  <a
+                  <ProjectScreenshot
                     key={index}
-                    href={screenshot}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="block overflow-hidden rounded-xl border border-base-300"
-                  >
-                    <img
-                      src={screenshot}
-                      alt={`${project.title} screenshot ${index + 1}`}
-                      loading="lazy"
-                      className="w-full h-auto transition-transform duration-300 hover:scale-105"
-                    />
-                  </a>
+                    url={screenshot}
+                    alt={`${project.title} screenshot ${index + 1}`}
+                  />
                 ))}
               </div>
             )}

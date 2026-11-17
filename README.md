@@ -665,7 +665,7 @@ const CONFIG = {
 
 - **Highlight Projects Beyond GitHub:** Feature projects hosted on other platforms or personal websites.
 - **Control over Content:** Provide custom titles, descriptions, images, and links for each external project.
-- **Project Popup:** Clicking a project opens a popup with optional `buttons` (link buttons at the top; if empty, `link` is shown as a "View Project" button), `details` (longer text; separate paragraphs with a blank line, and use `<br>` for a line break within a paragraph), `videos` (YouTube links are embedded, other URLs such as `.mp4` files use a video player) and `screenshots`.
+- **Project Popup:** Clicking a project opens a popup with optional `buttons` (link buttons at the top; if empty, `link` is shown as a "View Project" button), `detailsFile` (the name of a Markdown file in the `project-details/` folder) or `details` (Markdown text written inline). The write-up supports headings, `---` rules, nested lists, **bold**, *italic*, `code` and links, and line breaks are kept as written. A line containing only `![caption](url)` embeds media: YouTube links and video files play as videos, other URLs show as images (consecutive images form a grid), and a bare file name such as `shot.png` refers to `public/shot.png`, `videos` (YouTube links are embedded, other URLs such as `.mp4` files use a video player) and `screenshots`.
 
 ```ts
 // gitprofile.config.ts
@@ -693,7 +693,7 @@ const CONFIG = {
           link: 'https://example.com',
           // Optional, shown in the popup
           buttons: [{ label: 'Play Demo', url: 'https://example.com/demo' }],
-          details: 'A longer write-up of the project.\n\nSecond paragraph.',
+          detailsFile: 'my-project.md', // project-details/my-project.md
           videos: ['https://www.youtube.com/watch?v=VIDEO_ID'],
           screenshots: ['https://example.com/screenshot.png'],
         },
