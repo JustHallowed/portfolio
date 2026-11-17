@@ -43,7 +43,9 @@ const ProjectModal = ({
   const screenshots = project?.screenshots ?? [];
   const paragraphs = (project?.details || project?.description || '')
     .split(/\n\s*\n/)
-    .filter((paragraph) => paragraph.trim().length > 0);
+    // Join wrapped lines so multi-line template literals read as one paragraph
+    .map((paragraph) => paragraph.replace(/\s*\n\s*/g, ' ').trim())
+    .filter((paragraph) => paragraph.length > 0);
 
   return (
     <dialog ref={dialogRef} className="modal" onClose={onClose}>
@@ -108,7 +110,7 @@ const ProjectModal = ({
             {paragraphs.length > 0 && (
               <div className="space-y-3 text-base-content text-sm sm:text-base leading-relaxed">
                 {paragraphs.map((paragraph, index) => (
-                  <p key={index} className="whitespace-pre-line">
+                  <p key={index}>
                     {paragraph}
                   </p>
                 ))}

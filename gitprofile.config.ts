@@ -34,7 +34,9 @@ const CONFIG = {
       // Clicking a project opens a popup. Optional popup fields per project:
       //   buttons: link buttons at the top of the popup, e.g. [{ label: 'Play on itch.io', url: 'https://...' }]
       //            (if empty, `link` is shown as a "View Project" button)
-      //   details: longer text (separate paragraphs with '\n\n'), falls back to `description`
+      //   details: longer text for the popup; use backticks (`...`) to write it over multiple lines,
+      //            with a blank line between paragraphs;
+      //            `description` stays the short text on the card, and is used in the popup if `details` is empty
       //   videos: YouTube links or direct video URLs (e.g. '/portfolio/demo.mp4')
       //   screenshots: image URLs (files in `public/` are served at '/portfolio/<file>')
       projects: [
@@ -45,6 +47,7 @@ const CONFIG = {
           imageUrl:
             '/portfolio/GMOHBanner.png',
           buttons: [{ label: 'View on GitHub', url: 'https://github.com/weijieng-dp/TUTU' }],
+          details: '', // Longer text shown in the popup
         },
         {
           title: 'Mask Motel',
@@ -53,6 +56,7 @@ const CONFIG = {
           imageUrl:
             '/portfolio/MaskMotelBanner.png',
           buttons: [{ label: 'Play on itch.io', url: 'https://justhallowed.itch.io/mask-motel' }],
+          details: '', // Longer text shown in the popup
         },
         {
           title: 'Catasite',
@@ -61,16 +65,32 @@ const CONFIG = {
           imageUrl:
             '/portfolio/CatasiteBanner.png',
           buttons: [{ label: 'Watch on YouTube', url: 'https://www.youtube.com/watch?v=JaUAr721l7g' }],
+          details: '', // Longer text shown in the popup
           videos: ['https://www.youtube.com/watch?v=JaUAr721l7g'],
           screenshots: [],
         },
         {
           title: 'Broken Quest',
           description:
-            'Submission for Godot Wild Jam 55 - .',
+            'Submission for Godot Wild Jam 55 - a top-down roguelite shooter made in 10 days for Godot Wild Jam #55 by a team of four. I built the item, inventory and shop systems, the procedural room loop, and an enemy whose behaviour depends on which way the player is facing.',
           imageUrl:
             '/portfolio/BrokenQuestBanner.png',
           buttons: [{ label: 'Play on itch.io', url: 'https://justhallowed.itch.io/broken-quest' }],
+          details: `Broken Quest - March 2023 - Godot 3 / GDScript - team of 4
+
+A top-down shooter where you fight through rooms that loop endlessly, spend what you collect in a shop between runs, and keep an eye on a sleepiness meter as well as your health. I was one of two programmers and wrote about half the project's commits.
+
+What I built
+
+- Data-driven item system. Items are defined in JSON, and each one links to a short script for its effect, so adding a new item takes no changes to the core code. The five items include consumables that heal or restore sleepiness, and upgrades that stack bonuses onto damage, max health and magazine size.
+- Inventory, hotbar and shop. One reusable slot component powers the inventory, the hotbar and the shop. The hotbar stays in sync with the inventory through Godot signals. The shop handles buying, the in-game currency, and a "sleep" option that ends the run, where the player loses items.
+- Procedural room loop. Rooms are generated and linked as you go, with smooth camera moves between them. Portals spawn at set intervals, and a loop counter feeds a difficulty system that scales enemy health and resets player modifiers on each run.
+- Spider boss AI. A state machine with five states (idle, chase, stalk, cower and death) decides what the spider does by checking which way the player is facing. It backs off when you look at it and closes in when you turn away. It lives in its own dark, fog-covered room.
+- Player and game feel. I wrote the player's stats and controls, the health bar, and a shader-based vignette at the screen edges that pulses and fades as the player gets sleepier. I also added the music and sound effects.
+
+Takeaways
+
+I had to ship systems that worked together under a 10-day deadline. That meant designing small, reusable pieces like the shared slot component and the JSON-defined items, and coordinating closely through Git with my teammate as we both worked on the same codebase.`, // Longer text shown in the popup
         },
       ],
     },
