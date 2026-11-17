@@ -31,6 +31,10 @@ const CONFIG = {
     external: {
       header: 'My Projects',
       // To hide the `External Projects` section, keep it empty.
+      // Clicking a project opens a popup. Optional popup fields per project:
+      //   details: longer text (separate paragraphs with '\n\n'), falls back to `description`
+      //   videos: YouTube links or direct video URLs (e.g. '/portfolio/demo.mp4')
+      //   screenshots: image URLs (files in `public/` are served at '/portfolio/<file>')
       projects: [
           {
           title: 'Get Me Out of Hell',
@@ -55,6 +59,8 @@ const CONFIG = {
           imageUrl:
             '/portfolio/CatasiteBanner.png',
           link: 'https://www.youtube.com/watch?v=JaUAr721l7g',
+          videos: ['https://www.youtube.com/watch?v=JaUAr721l7g'],
+          screenshots: [],
         },
         {
           title: 'Broken Quest',

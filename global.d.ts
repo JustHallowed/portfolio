@@ -80,6 +80,25 @@ interface ExternalProjects {
     description?: string;
     imageUrl?: string;
     link: string;
+
+    /**
+     * Longer write-up shown in the project popup.
+     * Separate paragraphs with a blank line ("
+
+").
+     */
+    details?: string;
+
+    /**
+     * Videos shown in the project popup.
+     * YouTube links are embedded; other URLs (e.g. .mp4) use a video player.
+     */
+    videos?: Array<string>;
+
+    /**
+     * Screenshot image URLs shown in the project popup
+     */
+    screenshots?: Array<string>;
   }[];
 }
 

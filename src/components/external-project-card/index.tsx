@@ -1,5 +1,6 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import LazyImage from '../lazy-image';
+import ProjectModal from './project-modal';
 import { MdOpenInNew } from 'react-icons/md';
 import { ga, skeleton } from '../../utils';
 import { SanitizedExternalProject } from '../../interfaces/sanitized-config';
@@ -15,6 +16,9 @@ const ExternalProjectCard = ({
   loading: boolean;
   googleAnalyticId?: string;
 }) => {
+  const [selectedProject, setSelectedProject] =
+    useState<SanitizedExternalProject | null>(null);
+
   const renderSkeleton = () => {
     const array = [];
     for (let index = 0; index < externalProjects.length; index++) {
@@ -86,7 +90,7 @@ const ExternalProjectCard = ({
             console.error(error);
           }
 
-          window?.open(item.link, '_blank');
+          setSelectedProject(item);
         }}
       >
         <div className="p-8 h-full w-full">
@@ -162,6 +166,10 @@ const ExternalProjectCard = ({
           </div>
         </div>
       </div>
+      <ProjectModal
+        project={selectedProject}
+        onClose={() => setSelectedProject(null)}
+      />
     </Fragment>
   );
 };
