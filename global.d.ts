@@ -79,13 +79,22 @@ interface ExternalProjects {
     title: string;
     description?: string;
     imageUrl?: string;
-    link: string;
+    /**
+     * Fallback link, shown as a "View Project" button in the popup
+     * when `buttons` is empty
+     */
+    link?: string;
+
+    /**
+     * Link buttons shown at the top of the project popup
+     *
+     * example: [{ label: 'Play on itch.io', url: 'https://...' }]
+     */
+    buttons?: Array<{ label: string; url: string }>;
 
     /**
      * Longer write-up shown in the project popup.
-     * Separate paragraphs with a blank line ("
-
-").
+     * Separate paragraphs with a blank line ("\n\n").
      */
     details?: string;
 

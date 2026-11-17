@@ -33,6 +33,12 @@ const ProjectModal = ({
     }
   }, [project]);
 
+  // Fall back to a single "View Project" button when no buttons are configured
+  const buttons = project?.buttons?.length
+    ? project.buttons
+    : project?.link
+      ? [{ label: 'View Project', url: project.link }]
+      : [];
   const videos = project?.videos ?? [];
   const screenshots = project?.screenshots ?? [];
   const paragraphs = (project?.details || project?.description || '')
@@ -44,17 +50,35 @@ const ProjectModal = ({
       {/* Content only mounts while open, so closing stops any playing video */}
       {project && (
         <div className="modal-box w-11/12 max-w-4xl bg-base-100 p-0">
-          <div className="sticky top-0 z-10 flex items-center justify-between gap-4 bg-base-100 border-b border-base-300 px-6 py-4">
-            <h3 className="text-lg font-bold text-base-content">
-              {project.title}
-            </h3>
-            <button
-              className="btn btn-sm btn-circle btn-ghost"
-              aria-label="Close"
-              onClick={() => dialogRef.current?.close()}
-            >
-              <MdClose className="text-xl" />
-            </button>
+          <div className="sticky top-0 z-10 bg-base-100 border-b border-base-300 px-6 py-4">
+            <div className="flex items-center justify-between gap-4">
+              <h3 className="text-lg font-bold text-base-content">
+                {project.title}
+              </h3>
+              <button
+                className="btn btn-sm btn-circle btn-ghost"
+                aria-label="Close"
+                onClick={() => dialogRef.current?.close()}
+              >
+                <MdClose className="text-xl" />
+              </button>
+            </div>
+            {buttons.length > 0 && (
+              <div className="flex flex-wrap gap-2 mt-3">
+                {buttons.map((button, index) => (
+                  <a
+                    key={index}
+                    className={`btn btn-sm ${index === 0 ? 'btn-primary' : 'btn-outline'}`}
+                    href={button.url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {button.label}
+                    <MdOpenInNew />
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className="px-6 py-6 space-y-6">
@@ -112,20 +136,6 @@ const ProjectModal = ({
               </div>
             )}
           </div>
-
-          {project.link && (
-            <div className="sticky bottom-0 flex justify-end bg-base-100 border-t border-base-300 px-6 py-4">
-              <a
-                className="btn btn-primary btn-sm"
-                href={project.link}
-                target="_blank"
-                rel="noreferrer"
-              >
-                View Project
-                <MdOpenInNew />
-              </a>
-            </div>
-          )}
         </div>
       )}
       <form method="dialog" className="modal-backdrop">

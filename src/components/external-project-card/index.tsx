@@ -19,6 +19,20 @@ const ExternalProjectCard = ({
   const [selectedProject, setSelectedProject] =
     useState<SanitizedExternalProject | null>(null);
 
+  const openProject = (project: SanitizedExternalProject) => {
+    try {
+      if (googleAnalyticId) {
+        ga.event('Click External Project', {
+          post: project.title,
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+
+    setSelectedProject(project);
+  };
+
   const renderSkeleton = () => {
     const array = [];
     for (let index = 0; index < externalProjects.length; index++) {
@@ -73,24 +87,17 @@ const ExternalProjectCard = ({
 
   const renderExternalProjects = () => {
     return externalProjects.map((item, index) => (
-      <a
+      <div
+        role="button"
+        tabIndex={0}
         className="card shadow-md card-sm bg-base-100 cursor-pointer"
         key={index}
-        href={item.link}
-        onClick={(e) => {
-          e.preventDefault();
-
-          try {
-            if (googleAnalyticId) {
-              ga.event('Click External Project', {
-                post: item.title,
-              });
-            }
-          } catch (error) {
-            console.error(error);
+        onClick={() => openProject(item)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openProject(item);
           }
-
-          setSelectedProject(item);
         }}
       >
         <div className="p-8 h-full w-full">
@@ -124,7 +131,7 @@ const ExternalProjectCard = ({
             </div>
           </div>
         </div>
-      </a>
+      </div>
     ));
   };
 

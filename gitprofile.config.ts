@@ -32,6 +32,8 @@ const CONFIG = {
       header: 'My Projects',
       // To hide the `External Projects` section, keep it empty.
       // Clicking a project opens a popup. Optional popup fields per project:
+      //   buttons: link buttons at the top of the popup, e.g. [{ label: 'Play on itch.io', url: 'https://...' }]
+      //            (if empty, `link` is shown as a "View Project" button)
       //   details: longer text (separate paragraphs with '\n\n'), falls back to `description`
       //   videos: YouTube links or direct video URLs (e.g. '/portfolio/demo.mp4')
       //   screenshots: image URLs (files in `public/` are served at '/portfolio/<file>')
@@ -42,7 +44,7 @@ const CONFIG = {
             'Roguelite dungeon crawler built on a custom C++ game engine with windows-android cross platform compatibility through Android studio Java Native Interface (JNI)',
           imageUrl:
             '/portfolio/GMOHBanner.png',
-          link: 'https://github.com/weijieng-dp/TUTU',
+          buttons: [{ label: 'View on GitHub', url: 'https://github.com/weijieng-dp/TUTU' }],
         },
         {
           title: 'Mask Motel',
@@ -50,7 +52,7 @@ const CONFIG = {
             'Submission for Global Game Jam 2026 - You are a mask artist making ends meet by creating human disguises for monsters. Though business is lucrative, your customers can be quite... rowdy.',
           imageUrl:
             '/portfolio/MaskMotelBanner.png',
-          link: 'https://justhallowed.itch.io/mask-motel',
+          buttons: [{ label: 'Play on itch.io', url: 'https://justhallowed.itch.io/mask-motel' }],
         },
         {
           title: 'Catasite',
@@ -58,7 +60,7 @@ const CONFIG = {
             '2D RPG platformer built in Unity engine with a possession mechanic that gives unqiue abilities for different kinds of enemies. Blinded by a curse, you can only see through echolocation made possible with a custom authored shader',
           imageUrl:
             '/portfolio/CatasiteBanner.png',
-          link: 'https://www.youtube.com/watch?v=JaUAr721l7g',
+          buttons: [{ label: 'Watch on YouTube', url: 'https://www.youtube.com/watch?v=JaUAr721l7g' }],
           videos: ['https://www.youtube.com/watch?v=JaUAr721l7g'],
           screenshots: [],
         },
@@ -68,7 +70,7 @@ const CONFIG = {
             'Submission for Godot Wild Jam 55 - .',
           imageUrl:
             '/portfolio/BrokenQuestBanner.png',
-          link: 'https://justhallowed.itch.io/broken-quest',
+          buttons: [{ label: 'Play on itch.io', url: 'https://justhallowed.itch.io/broken-quest' }],
         },
       ],
     },
